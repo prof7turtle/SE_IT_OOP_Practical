@@ -1,0 +1,112 @@
+package lab;
+//Problem Statement::
+/*
+Design and develop a context for given case study and implement an 
+interface for Vehicles Consider the example of vehicles like bicycle,
+car and bike. All Vehicles have common functionalities such as Gear Change,
+Speed up and apply breaks. Make an interface and put all these common functionalities.
+Bicycle, Bike, Car classes should be implemented for all these functionalities in their 
+own class in their own way
+*/
+
+import java.util.*;
+
+interface vehicle{
+	void input_print();
+	void gear_change();
+	void speed_up();
+	void apply_break();
+	
+}
+
+class bicycle implements vehicle{
+	int speed=0;
+	int gear=0;
+	Scanner sc=new Scanner(System.in);
+	
+	public void input_print() {
+		System.out.print("Enter Details of Your Bicycle: ");
+		String name=sc.nextLine();
+		System.out.print("Bicycle "+name);
+	}
+
+	
+	public void gear_change() {
+		gear=gear+1;
+	}
+	public void speed_up() {
+		speed=speed+5;
+		
+	}
+	public void apply_break() {
+		speed=0;
+		gear=0;
+	}
+}
+
+class bike implements vehicle {
+	
+	int speed=0;
+	int gear=0;
+	Scanner sc=new Scanner(System.in);
+	
+	public void input_print() {
+		System.out.print("Enter Details of Your Bike: ");
+		String name=sc.nextLine();
+		System.out.print("Bike "+name);
+	}
+	
+	
+	public void gear_change() {
+		gear=gear+1;
+	}
+	public void speed_up() {
+		speed=speed+20;
+		
+	}
+	public void apply_break() {
+		speed=0;
+		gear=0;
+	}
+	
+}
+
+class car implements vehicle {
+	
+	int speed=0;
+	int gear=0;
+	Scanner sc=new Scanner(System.in);
+	
+	public void input_print() {
+		System.out.print("Enter Details of Your Car: ");
+		String name=sc.nextLine();
+		System.out.print("Car "+name);
+	}
+	
+	
+	public void gear_change() {
+		gear=gear+1;
+	}
+	public void speed_up() {
+		speed=speed+40;
+		
+	}
+	public void apply_break() {
+		speed=0;
+		gear=0;
+	}
+	
+}
+
+public class lab5 {
+	public static void main(String []args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("1.Bicycle");
+		System.out.println("Enter operation you want to perform");
+		int a=sc.nextInt();
+		switch(a) {
+		case 1:
+			
+		}
+	}
+}
