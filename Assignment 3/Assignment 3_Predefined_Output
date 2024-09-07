@@ -1,0 +1,160 @@
+//Problem Statement
+/*
+Design and develop inheritance for a given case study, identify objects and relationships and
+implement inheritance wherever applicable. Employee class hasEmp_name, Emp_id, Address, Mail_id, and Mobile_noas members. Inherit the classes: Programmer, Team Lead, Assistant Project
+Manager and Project Manager from employee class. Add Basic Pay (BP) as the member of all the
+inherited classes with 97% of BP as DA, 10 % of BP as HRA, 12% of BP as PF, 0.1% of BP for staff
+club fund. Generate pay slips for the employees with their gross and net salary.
+*/
+
+// Base class Employee
+class Employee {
+    protected String empName;
+    protected String empId;
+    protected String address;
+    protected String mailId;
+    protected String mobileNo;
+    protected double basicPay;
+
+    public Employee(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        this.empName = empName;
+        this.empId = empId;
+        this.address = address;
+        this.mailId = mailId;
+        this.mobileNo = mobileNo;
+        this.basicPay = basicPay;
+    }
+
+    public double calculateDA() {
+        return 0.97 * basicPay;
+    }
+
+    public double calculateHRA() {
+        return 0.10 * basicPay;
+    }
+
+    public double calculatePF() {
+        return 0.12 * basicPay;
+    }
+
+    public double calculateStaffClubFund() {
+        return 0.001 * basicPay;
+    }
+
+    public double calculateGrossSalary() {
+        return basicPay + calculateDA() + calculateHRA();
+    }
+
+    public double calculateNetSalary() {
+        return calculateGrossSalary() - calculatePF() - calculateStaffClubFund();
+    }
+
+    public void generatePaySlip() {
+        System.out.println("Employee Name: " + empName);
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Basic Pay: " + basicPay);
+        System.out.println("DA: " + calculateDA());
+        System.out.println("HRA: " + calculateHRA());
+        System.out.println("PF: " + calculatePF());
+        System.out.println("Staff Club Fund: " + calculateStaffClubFund());
+        System.out.println("Gross Salary: " + calculateGrossSalary());
+        System.out.println("Net Salary: " + calculateNetSalary());
+    }
+}
+
+// Derived class Programmer
+class Programmer extends Employee {
+    public Programmer(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        super(empName, empId, address, mailId, mobileNo, basicPay);
+    }
+}
+
+// Derived class TeamLead
+class TeamLead extends Employee {
+    public TeamLead(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        super(empName, empId, address, mailId, mobileNo, basicPay);
+    }
+}
+
+// Derived class AssistantProjectManager
+class AssistantProjectManager extends Employee {
+    public AssistantProjectManager(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        super(empName, empId, address, mailId, mobileNo, basicPay);
+    }
+}
+
+// Derived class ProjectManager
+class ProjectManager extends Employee {
+    public ProjectManager(String empName, String empId, String address, String mailId, String mobileNo, double basicPay) {
+        super(empName, empId, address, mailId, mobileNo, basicPay);
+    }
+}
+
+// Main class to test the implementation
+public class Main {
+    public static void main(String[] args) {
+        Programmer programmer = new Programmer("Alice", "P001", "123 Street", "alice@example.com", "1234567890", 50000);
+        TeamLead teamLead = new TeamLead("Bob", "TL001", "456 Avenue", "bob@example.com", "0987654321", 70000);
+        AssistantProjectManager apm = new AssistantProjectManager("Charlie", "APM001", "789 Boulevard", "charlie@example.com", "1122334455", 90000);
+        ProjectManager pm = new ProjectManager("Diana", "PM001", "101 Road", "diana@example.com", "5566778899", 120000);
+
+        System.out.println("Programmer Pay Slip:");
+        programmer.generatePaySlip();
+        System.out.println("\nTeam Lead Pay Slip:");
+        teamLead.generatePaySlip();
+        System.out.println("\nAssistant Project Manager Pay Slip:");
+        apm.generatePaySlip();
+        System.out.println("\nProject Manager Pay Slip:");
+        pm.generatePaySlip();
+    }
+}
+
+
+//=============================================================================================
+//Output
+/*
+Programmer Pay Slip:
+Employee Name: Alice
+Employee ID: P001
+Basic Pay: 50000.0
+DA: 48500.0
+HRA: 5000.0
+PF: 6000.0
+Staff Club Fund: 50.0
+Gross Salary: 53500.0
+Net Salary: 47450.0
+
+Team Lead Pay Slip:
+Employee Name: Bob
+Employee ID: TL001
+Basic Pay: 70000.0
+DA: 67900.0
+HRA: 7000.0
+PF: 8400.0
+Staff Club Fund: 70.0
+Gross Salary: 74900.0
+Net Salary: 66530.0
+
+Assistant Project Manager Pay Slip:
+Employee Name: Charlie
+Employee ID: APM001
+Basic Pay: 90000.0
+DA: 87300.0
+HRA: 9000.0
+PF: 10800.0
+Staff Club Fund: 90.0
+Gross Salary: 96300.0
+Net Salary: 85410.0
+
+Project Manager Pay Slip:
+Employee Name: Diana
+Employee ID: PM001
+Basic Pay: 120000.0
+DA: 116400.0
+HRA: 12000.0
+PF: 14400.0
+Staff Club Fund: 120.0
+Gross Salary: 132000.0
+Net Salary: 117480.0
+
+*/
