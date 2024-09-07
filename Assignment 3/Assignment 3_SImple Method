@@ -1,0 +1,100 @@
+import java.util.Scanner;
+
+public class SimplePaySlipGenerator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // User input
+        System.out.println("Enter employee type (Programmer, TeamLead, AssistantProjectManager, ProjectManager):");
+        String type = scanner.nextLine().trim();
+
+        System.out.println("Enter Employee Name:");
+        String name = scanner.nextLine().trim();
+
+        System.out.println("Enter Employee ID:");
+        String id = scanner.nextLine().trim();
+
+        System.out.println("Enter Address:");
+        String address = scanner.nextLine().trim();
+
+        System.out.println("Enter Mail ID:");
+        String mailId = scanner.nextLine().trim();
+
+        System.out.println("Enter Mobile Number:");
+        String mobileNo = scanner.nextLine().trim();
+
+        System.out.println("Enter Basic Pay:");
+        double basicPay = scanner.nextDouble();
+
+        // Initialize variables
+        double da, hra, pf, staffClubFund, grossSalary, netSalary;
+
+        // Calculate allowances and salaries based on employee type
+        switch (type.toLowerCase()) {
+            case "programmer":
+            case "teamlead":
+            case "assistantprojectmanager":
+            case "projectmanager":
+                // Calculate allowances
+                da = 0.97 * basicPay;
+                hra = 0.10 * basicPay;
+                pf = 0.12 * basicPay;
+                staffClubFund = 0.001 * basicPay;
+
+                // Calculate gross and net salary
+                grossSalary = basicPay + da + hra;
+                netSalary = grossSalary - pf - staffClubFund;
+
+                // Output pay slip
+                System.out.println("\nEmployee Name: " + name);
+                System.out.println("Employee ID: " + id);
+                System.out.println("Basic Pay: " + basicPay);
+                System.out.println("DA: " + da);
+                System.out.println("HRA: " + hra);
+                System.out.println("PF: " + pf);
+                System.out.println("Staff Club Fund: " + staffClubFund);
+                System.out.println("Gross Salary: " + grossSalary);
+                System.out.println("Net Salary: " + netSalary);
+                break;
+
+            default:
+                System.out.println("Invalid employee type.");
+                break;
+        }
+
+        scanner.close();
+    }
+}
+
+
+//=========================================================================================
+//Output
+/*
+Enter employee type (Programmer, TeamLead, AssistantProjectManager, ProjectManager):
+Programmer
+Enter Employee Name:
+harshil
+Enter Employee ID:
+516516
+Enter Address:
+ijfbeb
+Enter Mail ID:
+
+Enter Mobile Number:
+6896599561
+Enter Basic Pay:
+665594
+
+Employee Name: harshil
+Employee ID: 516516
+Basic Pay: 665594.0
+DA: 645626.1799999999
+HRA: 66559.40000000001
+PF: 79871.28
+Staff Club Fund: 665.594
+Gross Salary: 1377779.5799999998
+Net Salary: 1297242.7059999998
+
+=== Code Execution Successful ===
+*/
