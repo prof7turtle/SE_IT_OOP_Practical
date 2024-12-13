@@ -1,0 +1,118 @@
+import java.util.Scanner;
+
+class BankAccount {
+    private String accountNumber;
+    private String accountHolderName;
+    private double balance;
+    private double dailyWithdrawalLimit;
+    private double dailyWithdrawnAmount;
+
+    public BankAccount(String accountNumber, String accountHolderName, double initialDeposit, double dailyWithdrawalLimit) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = initialDeposit;
+        this.dailyWithdrawalLimit = dailyWithdrawalLimit;
+        this.dailyWithdrawnAmount = 0;
+    }
+
+    
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Successfully deposited $" + amount);
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount.");
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance.");
+        } else if ((dailyWithdrawnAmount + amount) > dailyWithdrawalLimit) {
+            System.out.println("Withdrawal failed. Daily withdrawal limit exceeded.");
+        } else {
+            balance -= amount;
+            dailyWithdrawnAmount += amount;
+            System.out.println("Successfully withdrawn $" + amount);
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void displayAccountInfo() {
+        System.out.println("\nAccount Information:");
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Holder Name: " + accountHolderName);
+        System.out.println("Balance: $" + balance);
+        System.out.println("Daily Withdrawal Limit: $" + dailyWithdrawalLimit);
+    }
+
+    public void resetDailyWithdrawal() {
+        dailyWithdrawnAmount = 0;
+        System.out.println("Daily withdrawal limit reset.");
+    }
+}
+
+public class Prac9 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Banking System!");
+        System.out.print("Enter Account Number: ");
+        String accountNumber = scanner.nextLine();
+        System.out.print("Enter Account Holder Name: ");
+        String accountHolderName = scanner.nextLine();
+        System.out.print("Enter Initial Deposit Amount: ");
+        double initialDeposit = scanner.nextDouble();
+        System.out.print("Enter Daily Withdrawal Limit: ");
+        double dailyWithdrawalLimit = scanner.nextDouble();
+
+        BankAccount account = new BankAccount(accountNumber, accountHolderName, initialDeposit, dailyWithdrawalLimit);
+
+        int choice;
+        do {
+            System.out.println("\n--- Banking Menu ---");
+            System.out.println("1. Deposit Money");
+            System.out.println("2. Withdraw Money");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Display Account Information");
+            System.out.println("5. Reset Daily Withdrawal Limit (Simulate Next Day)");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter deposit amount: ");
+                    double depositAmount = scanner.nextDouble();
+                    account.deposit(depositAmount);
+                    break;
+                case 2:
+                    System.out.print("Enter withdrawal amount: ");
+                    double withdrawalAmount = scanner.nextDouble();
+                    account.withdraw(withdrawalAmount);
+                    break;
+                case 3:
+                    System.out.println("Current Balance: $" + account.getBalance());
+                    break;
+                case 4:
+                    account.displayAccountInfo();
+                    break;
+                case 5:
+                    account.resetDailyWithdrawal();
+                    break;
+                case 6:
+                    System.out.println("Thank you for using the Banking System. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 6);
+
+        scanner.close();
+    }
+}
